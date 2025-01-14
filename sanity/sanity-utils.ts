@@ -34,3 +34,29 @@ export async function getPost() {
     }`,
   )
 }
+export async function getPage() {
+  return await client.fetch(
+    groq`
+    *[_type == "page"][0]{
+      title,
+      _createdAt,
+      body,
+      "slug": slug.current,
+      components[] -> {
+        _type,
+        title,
+        subtitle,
+        image { asset -> { url } },
+        button1 { label, url },
+        button2 { label, url },
+        sectionTitle,
+        sectionSubtitle,
+        serviceCards[] {
+          title,
+          description,
+          image { asset -> { url } }
+        }
+      }
+    }`,
+  )
+}

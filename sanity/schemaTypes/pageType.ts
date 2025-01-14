@@ -23,7 +23,7 @@ export const pageType = {
       of: [
         {
           type: 'reference',
-          to: [{type: 'hero'}], // Collega il componente Hero tramite un riferimento
+          to: [{type: 'hero'}, {type: 'service'}], // Collega il componente Hero tramite un riferimento
         },
         // Aggiungi altri componenti come 'menu', 'team', ecc.
       ],

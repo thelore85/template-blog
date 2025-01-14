@@ -44,9 +44,7 @@ export const structure: StructureResolver = S =>
         .child(
           S.list()
             .title('Components')
-            .items([
-              S.documentTypeListItem('hero').title('Hero'), // Gestione dei documenti "page"
-            ]),
+            .items([S.documentTypeListItem('hero').title('Hero'), S.documentTypeListItem('service').title('service')]),
         ),
 
       // Aggiungi un separatore, se necessario
