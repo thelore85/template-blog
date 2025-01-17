@@ -1,14 +1,18 @@
 import {getPage} from '@/sanity/sanity-utils'
+import {getBurgerMenu} from '@/sanity/sanity-utils'
 import Link from 'next/link'
+import BurgerMenu from './components/BurgerMenu'
 
 export default async function Home() {
   const page = await getPage()
+  const menu = await getBurgerMenu()
 
   console.log('/////////// page: ', page)
 
   return (
     <div className="min-h-screen ">
       <main className="">
+        {/* <BurgerMenu /> */}
         <div>
           {page.components.map((component: any, index: number) => {
             if (component._type === 'hero') {

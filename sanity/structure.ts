@@ -1,17 +1,3 @@
-// import type {StructureResolver} from 'sanity/structure'
-
-// // https://www.sanity.io/docs/structure-builder-cheat-sheet
-// export const structure: StructureResolver = S =>
-//   S.list()
-//     .title('Blog')
-//     .items([
-//       S.documentTypeListItem('post').title('Posts'),
-//       S.documentTypeListItem('category').title('Categories'),
-//       S.documentTypeListItem('author').title('Authors'),
-//       S.divider(),
-//       ...S.documentTypeListItems().filter(item => item.getId() && !['post', 'category', 'author'].includes(item.getId()!))
-//     ]),
-
 import type {StructureResolver} from 'sanity/structure'
 
 export const structure: StructureResolver = S =>
@@ -24,19 +10,22 @@ export const structure: StructureResolver = S =>
         .child(
           S.list()
             .title('Blog')
-            .items([S.documentTypeListItem('post').title('Posts'), S.documentTypeListItem('category').title('Categories'), S.documentTypeListItem('author').title('Authors'), S.divider(), ...S.documentTypeListItems().filter(item => item.getId() && !['post', 'category', 'author'].includes(item.getId()!))]),
+            .items([S.documentTypeListItem('post').title('Posts'), S.documentTypeListItem('category').title('Categories'), S.documentTypeListItem('author').title('Authors')]),
         ),
 
+      // // Sezione "Pages"
+      // S.listItem()
+      //   .title('Pages')
+      //   .child(
+      //     S.list()
+      //       .title('Pages')
+      //       .items([
+      //         S.documentTypeListItem('page').title('Pages'), // Gestione dei documenti "page"
+      //       ]),
+      //   ),
+
       // Sezione "Pages"
-      S.listItem()
-        .title('Pages')
-        .child(
-          S.list()
-            .title('Pages')
-            .items([
-              S.documentTypeListItem('page').title('Pages'), // Gestione dei documenti "page"
-            ]),
-        ),
+      S.listItem().title('Pages').child(S.documentTypeList('page').title('Pages')),
 
       // Sezione "Components"
       S.listItem()
@@ -44,12 +33,6 @@ export const structure: StructureResolver = S =>
         .child(
           S.list()
             .title('Components')
-            .items([S.documentTypeListItem('hero').title('Hero'), S.documentTypeListItem('service').title('service')]),
+            .items([S.documentTypeListItem('hero').title('Hero'), S.documentTypeListItem('service').title('service'), S.documentTypeListItem('burger').title('burger')]),
         ),
-
-      // Aggiungi un separatore, se necessario
-      S.divider(),
-
-      // Aggiungi qui qualsiasi altro documento, se necessario
-      ...S.documentTypeListItems().filter(item => item.getId() && !['post', 'category', 'author', 'page', 'component'].includes(item.getId()!)),
     ])

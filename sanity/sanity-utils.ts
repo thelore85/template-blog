@@ -34,6 +34,7 @@ export async function getPost() {
     }`,
   )
 }
+
 export async function getPage() {
   return await client.fetch(
     groq`
@@ -56,6 +57,24 @@ export async function getPage() {
           description,
           image { asset -> { url } }
         }
+      }
+    }`,
+  )
+}
+
+export async function getBurgerMenu() {
+  return await client.fetch(
+    groq`
+    *[_type == "burger"][0]{
+      title,
+      description,
+      logo {
+        asset -> { url }
+      },
+      links[] {
+        label,
+        url,
+        slug
       }
     }`,
   )
