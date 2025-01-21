@@ -7,8 +7,6 @@ export default async function Home() {
   const page = await getPage()
   const menu = await getBurgerMenu()
 
-  console.log('/////////// page: ', page)
-
   return (
     <div className="min-h-screen ">
       <main className="">
